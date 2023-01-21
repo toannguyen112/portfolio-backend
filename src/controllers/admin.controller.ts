@@ -1,24 +1,11 @@
 import Admin from "../models/admin.model";
 import { Request, Response } from "express";
-import User from "../models/user.model";
 import Role from "../models/role.model";
 import Permission from "../models/permission";
-import Room from "../models/room.model";
-import Tenant from "../models/tenant.model";
 export default class AdminController {
 
   async index(req: Request, res: Response) {
     const data = await Admin.findAll({});
-    return res.json(data).status(200);
-  }
-
-  async getUsers(req: Request, res: Response) {
-    const data = await User.findAll({});
-    return res.json(data).status(200);
-  }
-
-  async getRooms(req: Request, res: Response) {
-    const data = await Room.findAll({});
     return res.json(data).status(200);
   }
 
@@ -86,31 +73,5 @@ export default class AdminController {
     } catch (error) {
       res.status(500);
     }
-  }
-
-  async updateStatusRoom(req: Request, res: Response) {
-    try {
-
-      const roomId = req.body.id;
-      await Room.update({
-        status: req.body.status,
-      }, { where: { id: roomId } });
-
-      const data = await Room.findAll({});
-
-      return res.status(200).json({ message: "OK", data: data });
-    } catch (error) {
-      res.status(500);
-    }
-  }
-
-  async updateTenant(req: Request, res: Response) {
-
-    console.log(req.body);
-
-    const { id } = req.params;
-    await Tenant.update({ ...req.body }, { where: { id } })
-    const tenant = await Tenant.findOne({ where: { id } })
-    return res.status(200).json(tenant);
   }
 }

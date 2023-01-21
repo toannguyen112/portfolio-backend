@@ -1,7 +1,5 @@
 import { Table, Model, PrimaryKey, Column, BelongsToMany } from "sequelize-typescript";
 import Helper from "../utils/Helper";
-import Room from "./room.model";
-import RoomFile from "./roomFile.model";
 
 @Table({
   tableName: "files",
@@ -41,8 +39,6 @@ export default class File extends Model<File> {
 
   @Column
   height: number;
-
-  @BelongsToMany(() => Room, { as: "images", through: () => RoomFile })
 
   public static async storeMedia(image: any, uploads: string = "uploads", disk: string = "storage") {
     const path = `/${uploads}/${image.filename}`;
