@@ -23,4 +23,13 @@ export default class Banner extends Model {
   @Column
   image: string;
 
+  /**
+   * transform
+   */
+  public transform(item: any) {
+    return {
+      ...item
+    }
+  }
+
 }

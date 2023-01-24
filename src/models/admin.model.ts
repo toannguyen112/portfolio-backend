@@ -1,7 +1,6 @@
 import { Table, PrimaryKey, Column, Model, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import Helper from '../utils/Helper';
 import { Request, Response } from "express";
-import Role from "./role.model";
 
 interface typeTokens {
   token: string

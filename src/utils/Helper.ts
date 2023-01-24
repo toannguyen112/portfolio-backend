@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 import bcrypt from "bcrypt";
-import Permission from "../models/permission";
-import RolePermission from "../models/role_permission";
 
 export default class Helper {
   static randomString(length: number): string {
@@ -52,8 +50,6 @@ export default class Helper {
       );
 
       model.tokens = model.tokens ? model.tokens.concat({ token }) : [{ token }];
-
-      console.log(model.tokens);
       model.save();
 
       return token;
@@ -63,8 +59,7 @@ export default class Helper {
   }
 
   static async hashPassword(password: string = "123", number: number = 8) {
-    const hashedPassword = await bcrypt.hash(password, number);
-    return hashedPassword;
+    return await bcrypt.hash(password, number);
   }
 
 }
