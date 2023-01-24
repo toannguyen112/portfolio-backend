@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 import path from "path";
 dotenv.config();
 
-const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
 const optionsProduction = {
   database: "i5oklw12f233xcl4",
