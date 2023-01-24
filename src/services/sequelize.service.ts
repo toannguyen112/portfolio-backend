@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
-import Helper from "../utils/Helper";
 dotenv.config();
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;

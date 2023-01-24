@@ -1,9 +1,9 @@
 {
-  "name": "booking-hotel",
+  "name": "portfolio",
   "version": "1.0.0",
   "main": "app.ts",
   "repository": "https://github.com/toannguyen112",
-  "author": "wsp",
+  "author": "toannguyen112",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/app.ts",
