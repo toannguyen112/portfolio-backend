@@ -9,13 +9,6 @@ module.exports = {
         name: `admin`,
         password: `admin`,
       },
-      {
-        id: 2,
-        role_id: 1,
-        username: `admin1`,
-        name: `admin1`,
-        password: `admin1`,
-      },
     ]);
   },
   async down(queryInterface) {
