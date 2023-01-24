@@ -12,6 +12,7 @@ module.exports = {
 
       data: {
         type: Sequelize.TEXT,
+        allowNull: true,
       },
 
       type: {
@@ -21,6 +22,7 @@ module.exports = {
 
       user_agent: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
 
       ip_address: {
@@ -30,6 +32,7 @@ module.exports = {
 
       request_url: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
 
       status: {

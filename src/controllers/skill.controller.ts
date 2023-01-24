@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import Post from "../models/post.model";
-export default class PostController {
+import Skill from "../models/skill.model";
+export default class SkillController {
 
   async index(req: Request, res: Response) {
     try {
-      const data = await Post.findAll({});
+      const data = await Skill.findAll({});
       return res.status(200).json({ message: "success", data });
     } catch (error) {
       res.status(500).send(error);
@@ -13,7 +13,7 @@ export default class PostController {
 
   async create(req: Request, res: Response) {
     try {
-      const data = await Post.create(req.body);
+      const data = await Skill.create(req.body);
       return res.status(200).json(data);
     } catch (error) {
       res.status(500).send(error);
@@ -23,7 +23,7 @@ export default class PostController {
   async update(req: Request, res: Response) {
     try {
       const { id, body } = req.params;
-      const data = await Post.update(
+      const data = await Skill.update(
         { body }, { where: { id } }
       );
 
@@ -36,9 +36,9 @@ export default class PostController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      await Post.destroy({ where: { id } });
+      await Skill.destroy({ where: { id } });
 
-      const data = await Post.findAll({});
+      const data = await Skill.findAll({});
       return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
       res.status(500).send(error);

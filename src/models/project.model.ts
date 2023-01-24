@@ -1,10 +1,10 @@
 import { Table, Model, Column, PrimaryKey } from "sequelize-typescript";
 
 @Table({
-  tableName: "skills",
+  tableName: "projects",
   timestamps: true,
 })
-export default class Banner extends Model {
+export default class Project extends Model {
   @PrimaryKey
   @Column({
     autoIncrement: true,
@@ -13,9 +13,6 @@ export default class Banner extends Model {
 
   @Column
   name: string;
-
-  @Column
-  status: string;
 
   /**
    * transform
