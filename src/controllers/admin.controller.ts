@@ -23,12 +23,6 @@ export default class AdminController {
     }
   }
 
-  async create(req: Request, res: Response) {
-    await Admin.create({ ...req.body })
-    const admins = await Admin.findAll({})
-    return res.status(200).json(admins);
-  }
-
   async update(req: Request, res: Response) {
     await Admin.update({ ...req.body }, { where: { id: req.params.id } })
     const admin = await Admin.findAll({})
@@ -43,35 +37,4 @@ export default class AdminController {
     return new Admin().logout(req, res);
   }
 
-  async updateProfile(req: Request, res: Response) {
-    try {
-      const { id } = req.admin;
-      await Admin.update(req.body, { where: { id } });
-      const admin = await Admin.findOne({
-        where: { id }, include: [{
-          model: Role,
-          include: [Permission]
-        }]
-      })
-      return res.status(200).json({ message: "OK", data: admin });
-    } catch (error) {
-      res.status(500);
-    }
-  }
-
-  async profile(req: Request, res: Response) {
-    const { id } = req.admin;
-    try {
-      const admin = await Admin.findOne({
-        where: { id }, include: [{
-          model: Role,
-          include: [Permission]
-        }]
-      })
-      return res.status(200).json({ message: "OK", data: admin });
-
-    } catch (error) {
-      res.status(500);
-    }
-  }
 }
