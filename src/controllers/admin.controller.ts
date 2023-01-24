@@ -1,7 +1,5 @@
 import Admin from "../models/admin.model";
 import { Request, Response } from "express";
-import Role from "../models/role.model";
-import Permission from "../models/permission";
 export default class AdminController {
 
   async index(req: Request, res: Response) {
