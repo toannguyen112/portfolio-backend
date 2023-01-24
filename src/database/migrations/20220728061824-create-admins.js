@@ -27,7 +27,7 @@ module.exports = {
 
       tokens: {
         allowNull: true,
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
       },
 
       address: {
