@@ -44,8 +44,7 @@ module.exports = {
 
       tokens: {
         allowNull: true,
-        type: Sequelize.JSON,
-        defaultValue: []
+        type: Sequelize.TEXT,
       },
 
       address: {
