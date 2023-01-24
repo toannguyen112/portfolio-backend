@@ -38,87 +38,33 @@ export default class Helper {
   }
 
   static generateToken(model: any, dataObject: any = 'user') {
-    let saveObjectToken;
-    if (dataObject === 'user') {
-      saveObjectToken = { user: { id: model.id, name: model.name } }
+    try {
+      let saveObjectToken;
+
+      if (dataObject === 'admin') {
+        saveObjectToken = { admin: { id: model.id, name: model.name } }
+      }
+
+      const token: string = jwt.sign(
+        saveObjectToken,
+        process.env.SERVER_JWT_SECRET,
+        { expiresIn: process.env.SERVER_JWT_TIMEOUT }
+      );
+
+      model.tokens = model.tokens ? model.tokens.concat({ token }) : [{ token }];
+
+      console.log(model.tokens);
+      model.save();
+
+      return token;
+    } catch (error) {
+      console.log(error);
     }
-
-    if (dataObject === 'admin') {
-      saveObjectToken = { admin: { id: model.id, name: model.name, role_id: model.role_id } }
-    }
-
-    if (dataObject === 'tenant') {
-      saveObjectToken = { tenant: { id: model.id, name: model.name } }
-    }
-    const token: string = jwt.sign(
-      saveObjectToken,
-      process.env.SERVER_JWT_SECRET,
-      { expiresIn: process.env.SERVER_JWT_TIMEOUT }
-    );
-
-    model.tokens = model.tokens ? model.tokens.concat({ token }) : [{ token }];
-    model.save();
-
-    return token;
   }
 
   static async hashPassword(password: string = "123", number: number = 8) {
     const hashedPassword = await bcrypt.hash(password, number);
     return hashedPassword;
-  }
-
-  static checkPermission(roleId, permName) {
-    return new Promise(
-      (resolve, reject) => {
-        Permission.findOne({
-          where: {
-            perm_name: permName
-          }
-        }).then((perm) => {
-          RolePermission.findOne({
-            where: {
-              role_id: roleId,
-              perm_id: perm.id
-            }
-          }).then((rolePermission) => {
-            if (rolePermission) {
-              resolve(rolePermission);
-            } else {
-              reject({ message: 'Forbidden' });
-            }
-          }).catch((error) => {
-            reject(error);
-          });
-        }).catch(() => {
-          reject({ message: 'Forbidden' });
-        });
-      }
-    );
-  }
-
-  static parseDatabaseUrl(url) {
-
-    var pattern = /^(?:([^:\/?#\s]+):\/{2})?(?:([^@\/?#\s]+)@)?([^\/?#\s]+)?(?:\/([^?#\s]*))?(?:[?]([^#\s]+))?\S*$/;
-    var matches = url.match(pattern);
-    var params = {};
-    if (matches[5] != undefined) {
-      matches[5].split('&').map(function (x) {
-        var a = x.split('=');
-        params[a[0]] = a[1];
-      });
-    }
-
-    return {
-      protocol: matches[1],
-      user: matches[2] != undefined ? matches[2].split(':')[0] : undefined,
-      password: matches[2] != undefined ? matches[2].split(':')[1] : undefined,
-      host: matches[3],
-      hostname: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[0] : undefined,
-      // port: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[1] : undefined,
-      port: 3306,
-      segments: matches[4] != undefined ? matches[4].split('/') : undefined,
-      params: params
-    };
   }
 
 }

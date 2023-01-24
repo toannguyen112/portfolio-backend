@@ -17,10 +17,6 @@ class Admin extends Model {
   })
   id: number;
 
-  @ForeignKey(() => Role)
-  @Column
-  role_id: number;
-
   @Column
   name: string;
 
@@ -43,9 +39,6 @@ class Admin extends Model {
 
   @Column
   phone: string;
-
-  @BelongsTo(() => Role)
-  role: Role;
 
   async login(req: Request, res: Response): Promise<any> {
     try {
