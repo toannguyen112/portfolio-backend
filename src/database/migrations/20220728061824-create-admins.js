@@ -42,12 +42,10 @@ module.exports = {
 
       createdAt: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
       },
 
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
       },
     });
   },
