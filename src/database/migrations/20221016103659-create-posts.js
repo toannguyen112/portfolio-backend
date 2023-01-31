@@ -14,7 +14,22 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      description: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      isFeatured: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+
       status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      content: {
         type: Sequelize.STRING,
         allowNull: true,
       },

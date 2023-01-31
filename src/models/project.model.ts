@@ -14,6 +14,14 @@ export default class Project extends Model {
   @Column
   name: string;
 
+  @Column
+  description: string;
+
+  @Column
+  isFeatured: boolean;
+
+  @Column
+  content: string;
   /**
    * transform
    */

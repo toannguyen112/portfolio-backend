@@ -14,6 +14,27 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      description: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      isFeatured: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 'active'
+      },
+
+      content: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),

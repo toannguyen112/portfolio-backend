@@ -14,6 +14,11 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: "active"
+      },
+
       star: {
         type: Sequelize.INTEGER,
         allowNull: true,
