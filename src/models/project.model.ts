@@ -15,6 +15,9 @@ export default class Project extends Model {
   name: string;
 
   @Column
+  status: string;
+
+  @Column
   description: string;
 
   @Column

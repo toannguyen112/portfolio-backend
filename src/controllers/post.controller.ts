@@ -60,6 +60,9 @@ export default class PostController {
   }
 
   async create(req: Request, res: Response) {
+
+    console.log(req.body);
+
     try {
       const data = await Post.create(req.body);
       return res.status(200).json(data);
@@ -84,9 +87,8 @@ export default class PostController {
 
   async update(req: Request, res: Response) {
     try {
-      const { id, body } = req.params;
-      const data = await Post.update(
-        { body }, { where: { id } }
+      const { id } = req.params;
+      const data = await Post.update(req.body, { where: { id } }
       );
 
       return res.status(200).json({ message: "OK", data });

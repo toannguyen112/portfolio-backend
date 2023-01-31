@@ -15,6 +15,9 @@ export default class Post extends Model {
   name: string;
 
   @Column
+  type: string;
+
+  @Column
   description: string;
 
   @Column
