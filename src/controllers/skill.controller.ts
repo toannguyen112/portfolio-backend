@@ -59,6 +59,19 @@ export default class SkillController {
       .json({ message: "success", data: result });
   }
 
+
+  async getLists(req: Request, res: Response) {
+    try {
+      const data = await Skill.findAll({});
+      return res.status(200).json({
+        message: "success",
+        data: data
+      });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
   async create(req: Request, res: Response) {
     try {
       const data = await Skill.create(req.body);

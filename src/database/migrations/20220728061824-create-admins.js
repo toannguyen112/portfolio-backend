@@ -35,6 +35,11 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      link_cv: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+
       phone: {
         allowNull: true,
         type: Sequelize.INTEGER,

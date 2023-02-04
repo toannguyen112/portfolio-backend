@@ -1,6 +1,7 @@
 import { Table, Model, PrimaryKey, Column, BelongsToMany } from "sequelize-typescript";
 import Helper from "../utils/Helper";
-
+import Post from "./post.model";
+import PostFile from "./post_file.model";
 @Table({
   tableName: "files",
   timestamps: true,
@@ -39,6 +40,9 @@ export default class File extends Model<File> {
 
   @Column
   height: number;
+
+  @BelongsToMany(() => Post, () => PostFile)
+  authors: Post[];
 
   public static async storeMedia(image: any, uploads: string = "uploads", disk: string = "storage") {
     const path = `/${uploads}/${image.filename}`;
