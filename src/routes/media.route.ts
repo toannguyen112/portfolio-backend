@@ -20,6 +20,7 @@ const upload = multer({ storage: storage });
 const route = Router();
 
 route.get("/medias/index", new MediaController().index);
+route.get("/medias/show/:id", new MediaController().show);
 route.post("/medias/store", upload.array("files"), new MediaController().store);
 route.delete("/medias/delete/:id", new MediaController().delete);
 

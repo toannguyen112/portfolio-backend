@@ -30,7 +30,7 @@ module.exports = {
 
       status: {
         type: Sequelize.STRING,
-        allowNull: true,
+        defaultValue: "active"
       },
 
       content: {
@@ -41,6 +41,14 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
+      },
+
+      file_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "files",
+          key: "id",
+        },
       },
 
       updatedAt: {

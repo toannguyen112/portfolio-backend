@@ -1,6 +1,5 @@
-import { Table, Model, Column, PrimaryKey, BelongsToMany } from "sequelize-typescript";
+import { Table, Model, Column, PrimaryKey, BelongsToMany, BelongsTo, HasOne, ForeignKey } from "sequelize-typescript";
 import File from "./file.model";
-import PostFile from "./post_file.model";
 @Table({
   tableName: "posts",
   timestamps: true,
@@ -31,12 +30,25 @@ export default class Post extends Model {
   @Column
   status: string;
 
-  @BelongsToMany(() => File, () => PostFile)
-  authors: File[];
+  @ForeignKey(() => File)
+  @Column
+  file_id: number;
 
-  public transform(item: any) {
+  @BelongsTo(() => File)
+  file: File;
+
+  public static transform(item: any) {
     return {
-      ...item
+      "id": item.id,
+      "name": item.name,
+      "type": item.type,
+      "description": item.description,
+      "isFeatured": item.isFeatured,
+      "content": item.content,
+      "status": item.status,
+      "createdAt": item.createdAt,
+      "updatedAt": item.updatedAt,
+      "thumbnail": item.file ? item.file.path : ""
     }
   }
 }

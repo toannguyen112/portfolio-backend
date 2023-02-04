@@ -10,6 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
+      file_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "files",
+          key: "id",
+        },
+      },
+
       name: {
         type: Sequelize.STRING,
       },
@@ -26,7 +34,6 @@ module.exports = {
 
       status: {
         type: Sequelize.STRING,
-        allowNull: true,
         defaultValue: 'active'
       },
 
